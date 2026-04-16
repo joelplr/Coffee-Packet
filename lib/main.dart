@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:coffee_machine_dashboard/screens/main_layout.dart';
 import 'providers/app_provider.dart';
 import 'screens/main_layout.dart';
 import 'theme/app_theme.dart';
