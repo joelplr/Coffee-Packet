@@ -12,6 +12,7 @@ enum NavPage { dashboard, recipes, machineControl, inventory, analytics, setting
 class AppProvider extends ChangeNotifier {
   NavPage _currentPage = NavPage.dashboard;
   MachineStatus _machineStatus = MachineStatus.idle;
+  bool _isDarkMode = true;
   Timer? _productionTimer;
   int _totalSachetsProduced = 0;
   int _currentRate = 0;
@@ -19,7 +20,7 @@ class AppProvider extends ChangeNotifier {
   double _sachetSize = 20; // grams
   double _sealingTemp = 180; // celsius
   Recipe? _activeRecipe;
-  String _currentUser = 'Admin User';
+  String _currentUser = 'Joel Punalur';
   String _currentRole = 'Admin';
 
   final List<Recipe> _recipes = [
@@ -89,6 +90,12 @@ class AppProvider extends ChangeNotifier {
   List<double> get weeklyProduction => List.unmodifiable(_weeklyProduction);
   List<String> get weekDays => List.unmodifiable(_weekDays);
   int get unreadCount => _notifications.where((n) => !n.isRead).length;
+  bool get isDarkMode => _isDarkMode;
+
+  void toggleTheme() {
+    _isDarkMode = !_isDarkMode;
+    notifyListeners();
+  }
 
   String get machineStatusLabel {
     switch (_machineStatus) {

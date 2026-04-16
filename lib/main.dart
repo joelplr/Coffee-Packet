@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
+import 'package:coffee_machine_dashboard/screens/main_layout.dart';
 import 'providers/app_provider.dart';
 import 'screens/main_layout.dart';
 import 'theme/app_theme.dart';
@@ -22,11 +22,17 @@ class CoffeeMachineApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'CoffeeMatic — Sachet Production Platform',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.darkTheme,
-      home: const MainLayout(),
+    return Consumer<AppProvider>(
+      builder: (context, provider, _) {
+        return MaterialApp(
+          title: 'CoffeeMatic — Powered by XyphX',
+          debugShowCheckedModeBanner: false,
+          themeMode: provider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          home: MainLayout(),
+        );
+      },
     );
   }
 }
